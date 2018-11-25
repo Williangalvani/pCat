@@ -60,11 +60,10 @@ class VariableSelection(QtWidgets.QDialog, variableSelection.Ui_variableSelectio
         self.model_left.removeRow(index)
     
     def move_left(self):
-        rows = self.model_right.setRowCount()
         index = self.list_right.currentIndex().row()
         item = self.model_right.takeItem(index)
         self.model_left.appendRow(item)
-        self.model_left.removeRow(index)
+        self.model_right.removeRow(index)
 
 
 app = QtWidgets.QApplication(sys.argv)
