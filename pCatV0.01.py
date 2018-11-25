@@ -29,6 +29,8 @@ class MainWindow(QtWidgets.QMainWindow, ui.Ui_MainWindow):
         if filepath:
             print(filepath)
             matdata = sio.loadmat(filepath)
+            matdata = {key: item for key, item in matdata.items() if type(item) == numpy.ndarray and '__' not in key}
+
             print(matdata.keys())
             # self.emit(QtCore.Signal("openVariableSelectionWindow(str)"), filepath)
             self.openVariableSelectionWindow.emit(filepath)
