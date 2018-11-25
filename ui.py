@@ -8,14 +8,16 @@
 # WARNING! All changes made in this file will be lost!
 
 from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCharts
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(728, 391)
-        self.centralWidget = QtWidgets.QWidget(MainWindow)
-        self.centralWidget.setObjectName("centralWidget")
-        MainWindow.setCentralWidget(self.centralWidget)
+        #self.centralWidget = QtWidgets.QWidget(MainWindow)
+        #self.centralWidget.setObjectName("centralWidget")
+
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
@@ -60,6 +62,10 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuFile.menuAction())
         self.menuBar.addAction(self.menuTools.menuAction())
         self.menuBar.addAction(self.menuAbout.menuAction())
+
+        chart = QtCharts.QtCharts.QChart()
+        self.chartView = QtCharts.QtCharts.QChartView(chart)
+        MainWindow.setCentralWidget(self.chartView)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

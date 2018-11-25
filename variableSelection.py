@@ -13,6 +13,7 @@ from PySide2.QtGui import QStandardItemModel
 
 class Ui_variableSelection(object):
     def setupUi(self, variableSelection):
+        self.variableSelection = variableSelection
         variableSelection.setObjectName("variableSelection")
         variableSelection.resize(409, 300)
         self.buttonBox = QtWidgets.QDialogButtonBox(variableSelection)
@@ -41,7 +42,7 @@ class Ui_variableSelection(object):
         self.label.setObjectName("label")
 
         self.retranslateUi(variableSelection)
-        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), variableSelection.accept)
+        QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("accepted()"), self.plot)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL("rejected()"), variableSelection.reject)
         QtCore.QMetaObject.connectSlotsByName(variableSelection)
 
