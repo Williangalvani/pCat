@@ -40,7 +40,8 @@ class VariableSelection(QtWidgets.QDialog, variableSelection.Ui_variableSelectio
     def __init__(self, parent):
         super(VariableSelection, self).__init__(parent)
         self.setupUi(self)
-        self.commandLinkButton.clicked.connect(self.move_right)
+        self.toolButton.clicked.connect(self.move_right)
+        self.toolButton_2.clicked.connect(self.move_left)
 
     @Slot(str)
     def receive_filepath(self, filepath):
@@ -56,11 +57,14 @@ class VariableSelection(QtWidgets.QDialog, variableSelection.Ui_variableSelectio
         index = self.list_left.currentIndex().row()
         item = self.model_left.takeItem(index)
         self.model_right.appendRow(item)
-
+        self.model_left.removeRow(index)
+    
     def move_left(self):
+        rows = self.model_right.setRowCount()
         index = self.list_right.currentIndex().row()
         item = self.model_right.takeItem(index)
         self.model_left.appendRow(item)
+        self.model_left.removeRow(index)
 
 
 app = QtWidgets.QApplication(sys.argv)
